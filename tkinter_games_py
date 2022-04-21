@@ -1,0 +1,216 @@
+
+import random
+from tkinter import *
+
+# creating the window, adding the name to the top left, selecting the size of the window
+root = Tk()
+root.title("Dom's Application")
+root.geometry("600x600")
+
+
+
+user_score = 0
+comp_score = 0
+draws = 0
+
+
+# this says hello to the user and removes the label, textbox and button. then asks the user if they'd like to play
+
+def comm1():
+    global quiz_label
+    global yes_button_label
+    yes_button_label = Label(root, text="hello " + my_textbox.get())
+    yes_button_label.pack()
+    quiz_label = Label(root, text="Would you like to play?  ")
+    quiz_label.pack()
+    my_label.destroy()
+    my_textbox.destroy()
+    my_button1.destroy()
+    my_button2.pack()
+    my_button3.pack()
+
+def comm2():
+    global yes_button_label2
+    yes_button_label2 = Label(root, text="What game would you like to play? ")
+    yes_button_label2.pack()
+    my_button2.destroy()
+    my_button3.destroy()
+    game_button1.pack()
+    game_button2.pack()
+    quiz_label.destroy()
+
+def comm3():
+    no_button_label = Label(root, text="Shame")
+    no_button_label.pack()
+    my_button2.destroy()
+    my_button3.destroy()
+    quiz_label.destroy()
+
+def comm4():
+    global rps_button_label
+    rps_button_label = Label(root, text="You selected Game 1, that's Rock, Papers, Scissors...\n Now Pick:")
+    rps_button_label.pack()
+    game_button1.destroy()
+    game_button2.destroy()
+    yes_button_label2.destroy()
+    rock_button.pack()
+    paper_button.pack()
+    scis_button.pack()
+
+def cmd4a():
+    global user_score
+    global comp_score
+    global draws
+    global computer_label
+    options = ["Rock", "Paper", "Scissors"]
+    rand_number = random.randint(0, 2)
+    computer_pick = options[rand_number]
+    computer_label = Label(root, text="Computer picked " + computer_pick)
+    computer_label.pack()
+    draw_label2 = Label(root, text=draw_label)
+    lose_label2 = Label(root, text=lose_label)
+    win_label2 = Label(root, text=win_label)
+
+    if computer_pick == options[0]:
+        draw_label2.pack()
+        draws += 1
+
+    elif computer_pick == options[1]:
+        lose_label2.pack()
+        comp_score += 1
+
+    elif computer_pick == options[2]:
+        win_label2.pack()
+        user_score += 1
+
+    rock_button.pack_forget()
+    paper_button.pack_forget()
+    scis_button.pack_forget()
+    rps_button_label.destroy()
+    yes_button_label.destroy()
+    play_again_button.pack()
+
+
+def cmd4b():
+    global user_score
+    global comp_score
+    global draws
+    options = ["Rock", "Paper", "Scissors"]
+    rand_number = random.randint(0, 2)
+    computer_pick = options[rand_number]
+    computer_label = Label(root, text="Computer picked " + computer_pick)
+    computer_label.pack()
+    draw_label2 = Label(root, text=draw_label)
+    lose_label2 = Label(root, text = lose_label)
+    win_label2 = Label(root, text=win_label)
+
+    if computer_pick == options[0]:
+        win_label2.pack()
+        user_score += 1
+
+    elif computer_pick == options[1]:
+        draw_label2.pack()
+        draws += 1
+
+    elif computer_pick == options[2]:
+        lose_label2.pack()
+        comp_score += 1
+
+    rock_button.pack_forget()
+    paper_button.pack_forget()
+    scis_button.pack_forget()
+    rps_button_label.destroy()
+    yes_button_label.destroy()
+    play_again_button.pack()
+
+def cmd4c():
+    global user_score
+    global comp_score
+    global draws
+    global draw_label2
+    global lose_label2
+    global win_label2
+
+    options = ["Rock", "Paper", "Scissors"]
+    rand_number = random.randint(0, 2)
+    computer_pick = options[rand_number]
+    computer_label = Label(root, text="Computer picked " + computer_pick)
+    computer_label.pack()
+    draw_label2 = Label(root, text=draw_label)
+    lose_label2 = Label(root, text=lose_label)
+    win_label2 = Label(root, text=win_label)
+
+    if computer_pick == options[0]:
+        lose_label2.pack()
+        comp_score += 1
+
+    elif computer_pick == options[1]:
+        win_label2.pack()
+        user_score += 1
+
+    elif computer_pick == options[2]:
+        draw_label2.pack()
+        draws += 1
+
+    rock_button.pack_forget()
+    paper_button.pack_forget()
+    scis_button.pack_forget()
+    rps_button_label.destroy()
+    yes_button_label.destroy()
+    play_again_button.pack()
+
+def comm5():
+    ht_button_label = Label(root, text="You selected Game 2, that's Heads or Tails")
+    ht_button_label.pack()
+    game_button1.destroy()
+    game_button2.destroy()
+
+def comm6():
+    rock_button.pack()
+    scis_button.pack()
+    paper_button.pack()
+    comp_score_label = Label(root, text="Computer Score = " + str(comp_score))
+    user_score_label = Label(root, text="Your Score = " + str(user_score))
+    draw_score_label = Label(root, text="Draws = " + str(draws))
+    user_score_label.place(x=50, y=30)
+    draw_score_label.place(x=50, y=50)
+    comp_score_label.place(x=50, y=70)
+
+# prompting user to enter first name
+
+my_label = Label(root, text="enter your first name:")
+my_label.pack()
+
+# creating the textbox to enter name
+my_textbox = Entry(root, width=30)
+my_textbox.pack()
+
+# creating the button that says Submit, and commiting command seen on at the top def comm1():
+my_button1 = Button(root, text="Submit", command=comm1)
+my_button1.pack()
+my_button2 = Button(root, text ="Yes", command=comm2)
+my_button3 = Button(root, text ="No", command=comm3)
+game_button1 = Button(root, text="Game 1", command=comm4)
+game_button2 = Button(root, text="Game 2", command=comm5)
+play_again_button = Button(root, text = "Play again? ", command=comm6)
+#rock paper scissors buttons
+rock_button = Button(root, text="Rock", command=cmd4a)
+paper_button = Button(root, text="Paper", command=cmd4b)
+scis_button = Button(root, text="Scissors", command=cmd4c)
+draw_label = "You Drew..."
+win_label = "You Win"
+lose_label = "You Lost"
+
+#rock paper scissors scores
+options = ["Rock", "Paper", "Scissors"]
+rand_number = random.randint(0,2)
+computer_pick = options[rand_number]
+
+
+
+
+
+
+
+root.mainloop()
+
